@@ -1,0 +1,122 @@
+<!--
+Event:
+In JavaScript, an event refers to any interaction or occurrence detected by the browser, such as a user action (clicking a button, moving the mouse, pressing a key), changes in the document (loading, resizing), or interactions with specific elements. Events enable dynamic interactions between users and a web application.
+
+
+How Do Events Work?
+Event Listener: A function (called a callback) that runs when the event is triggered.
+Event Object: An object passed to the event listener function containing details about the event (e.g., which key was pressed, which element was clicked).
+
+
+
+Common Events
+    Mouse Events: click, dblclick, mousedown, mouseup, mouseenter, mouseleave, mousemove
+    Keyboard Events: keydown, keyup, keypress
+    Form Events: submit, change, focus, blur
+    Window Events: load, resize, scroll
+
+
+How to Handle Events in JavaScript?
+There are three main ways to handle events:
+    1.Inline Event Handlers
+    2. HTML DOM Event Handlers
+    3. Event Listeners  
+    
+    
+
+Syntax of addEventListener
+The addEventListener method attaches an event handler to an element.
+
+    target.addEventListener(type, listener);
+    
+Parameters Explained
+    1.target: The DOM element to which the event listener is attached (e.g., document, window, or any specific HTML element).
+
+    2.type: A string representing the type of event (e.g., "click", "mouseover", "keydown", etc.).
+
+    3. listener: The function that is executed when the event occurs. This can also be an anonymous function or a named function.
+
+
+
+
+Event Object
+The event listener function automatically receives an event object, which contains details about the event.
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+<!-- 1. Inline Event Handlers
+You can directly attach events to an HTML element using its attributes. -->
+    <button onclick="alert('Button was clicked')">Clic Me</button>
+
+
+
+<!-- 2. HTML DOM Event Handlers
+You can use JavaScript to assign an event handler to an element. -->
+    <button id="btn">Clik me</button>
+    <p id="message">Remove me</p>
+
+
+
+<!-- 3. Event Listeners
+The addEventListener method allows multiple event listeners on the same element without overwriting previous ones. -->
+    <button id="hoverBtn">Hover over me</button>
+    <p id="hoverMessage"></p>
+
+
+
+
+<!-- 4. Event Object  -->
+<button id="eventBtn">Click Event</button>
+
+
+
+
+<!-- Prevent Default Behavior
+The preventDefault method stops the browser's default action for an event. -->
+<form id="myForm">
+    <input type="text"  placeholder="Type somethings..." required>
+    <button type="submit">Submit</button>
+</form>
+
+
+
+
+    <script>
+        const button = document.getElementById('btn')
+        button.onclick = function() {
+            document.getElementById('message').innerText = ""
+        }
+
+
+        const hoverBtn = document.getElementById('hoverBtn')
+        hoverBtn.addEventListener('mouseover', () => {
+            document.getElementById('hoverMessage').innerText = "Mouse is over the button"
+        })
+
+
+        const eventBtn = document.querySelector('#eventBtn')
+        eventBtn.addEventListener('click', (event) => {
+            console.log(event)
+        })
+
+
+
+        const form = document.getElementById("myForm");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault
+            
+        })
+
+    </script>
+
+</body>
+</html>

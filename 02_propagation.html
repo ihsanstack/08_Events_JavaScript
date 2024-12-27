@@ -1,0 +1,95 @@
+<!--
+What is Event Propagation?
+Event Propagation is the process by which events move through the DOM (Document Object Model) hierarchy. It determines the order in which elements receive events when an event occurs on a nested element. There are three phases in event propagation: 
+
+
+Event Propagation Phases
+
+1. Capturing Phase
+In this phase:
+    The event travels from the root element (document) to the target element.
+    Listeners can capture the event during this phase by setting the third parameter in addEventListener to true (or using { capture: true }).
+
+2. Target Phase
+    This is when the event directly affects the target element.
+    Event listeners attached to the target element can respond to the event here.
+
+3. Bubbling Phase
+    The event moves from the target element back up through its ancestors to the root.
+    This is the default behavior for most events.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation</title>
+</head>
+<body>
+    <div id="parent">
+        <button id="child">Click Me</button>
+    </div>
+
+
+
+    <script>
+        const parent = document.getElementById('parent')
+        const child = document.getElementById('child')
+
+        // //Event  Listener on parent
+        // parent.addEventListener('click', (event) => {
+        //     console.log("Parent click")
+        // })
+
+        // //Event  Listener on child
+        // child.addEventListener('click', (event) => {
+        //     console.log("child click")
+        // })
+
+        // Child clicked
+        // Parent clicked
+        // This is due to the bubbling phase, where the event moves from the child to the parent.
+
+
+
+
+        // Stopping Propagation
+        // You can stop the event from propagating further by using:
+
+        // event.stopPropagation(): Stops the event from propagating to parent elements in both capturing and bubbling phases.
+        // event.stopImmediatePropagation(): Stops the event from propagating and prevents other listeners on the same element from being executed.
+
+        //Event  Listener on child
+        // child.addEventListener('click', (event) => {
+        //     console.log("child click")
+        //     event.stopPropagation()
+        // }, false)
+
+        // //Event  Listener on parent
+        //  parent.addEventListener('click', (event) => {
+        //     console.log("Parent click")
+        // }, false)
+
+        // output: Child clicked
+
+
+
+
+        // Using Event Capturing
+        // By setting { capture: true }, you can handle the event during the capturing phase.
+
+        //Event  Listener on parent
+        parent.addEventListener('click', (event) => {
+            console.log("Parent click")
+        }, true)
+
+        //Event  Listener on child
+        child.addEventListener('click', (event) => {
+            console.log("child click")
+        }, true)
+
+    </script>
+</body>
+</html>

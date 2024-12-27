@@ -1,0 +1,87 @@
+<!-- 
+
+Form Events:
+Form events in JavaScript allow us to interact with and handle user actions performed on forms, such as entering input, selecting options, or submitting a form. These events help in validating data, preventing default actions, and customizing user interactions.
+ 
+Common Form Events:
+submit: Triggered when a form is submitted.
+input: Fires whenever a user types or modifies input in a field.
+change: Triggered when an input field's value changes and loses focus.
+focus: Fires when an element (e.g., input) gains focus.
+blur: Fires when an element loses focus.
+reset: Triggered when the form's reset button is clicked. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="userForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="message"></div>
+    <script>
+        // Get references to the form, input fields, and message div
+        const form = document.getElementById("userForm");
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
+        const messageDiv = document.getElementById("message");
+
+        // Event: Validate on form submit
+        form.addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevent the form from refreshing the page
+
+            // Get trimmed values of the inputs
+            const username = usernameInput.value.trim();
+            const email = emailInput.value.trim();
+
+            // Check if any field is empty
+            if (username === "" || email === "") {
+                messageDiv.textContent = "All fields are required!"; // Show error message
+                messageDiv.style.color = "red"; // Set text color to red
+            } else {
+                // Display success message with username
+                messageDiv.textContent = `Form submitted! Welcome, ${username}!`; 
+                messageDiv.style.color = "green"; // Set text color to green
+            }
+        });
+
+        // Event: Real-time validation for username
+        usernameInput.addEventListener("input", () => {
+            // Check if username length is less than 3
+            if (usernameInput.value.trim().length < 3) {
+                usernameInput.style.borderColor = "red"; // Highlight border in red
+            } else {
+                usernameInput.style.borderColor = "green"; // Highlight border in green
+            }
+        });
+
+        // Event: Focus and blur for email input
+        emailInput.addEventListener("focus", () => {
+            // Change background color to light blue when the email input is focused
+            emailInput.style.backgroundColor = "#f0f8ff";
+        });
+
+        emailInput.addEventListener("blur", () => {
+            // Reset the background color when the email input loses focus
+            emailInput.style.backgroundColor = "";
+        });
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!-- A keyboard event listener captures and responds to user actions involving the keyboard. JavaScript provides three main keyboard events:
+
+keydown: Triggered when a key is pressed down.
+keyup: Triggered when a key is released.
+keypress: Triggered when a key is pressed and generates a character. (Deprecated, use keydown or keyup instead.) 
+
+
+Key Properties
+event.key: Returns the value of the key pressed (e.g., "Enter", "A").
+event.code: Provides a physical representation of the key (e.g., "KeyA").
+event.shiftKey, event.ctrlKey, event.altKey: Boolean properties to check if modifier keys (Shift, Ctrl, Alt) are pressed.
+-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyboard Event </title>
+</head>
+<body>
+    <div id="display" style="font-size: 20px; font-weight: bold; margin: 20px;">
+        Press any key to see the result.
+    </div>
+    <input type="text" id="textInput" placeholder="Type here..." style="width: 300px; padding: 10px;">
+    
+</body>
+<script>
+    const display = document.querySelector('#display')
+    const textInput = document.querySelector('#textInput')
+
+    // document.addEventListener('keydown', (event) => {
+    //     display.textContent = `Key down ${event.key}, Code ${event.code}`
+    // })
+
+    textInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            alert("You pressed Enter!");
+        }
+    })    
+</script>
+</html>
